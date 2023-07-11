@@ -1,2 +1,2 @@
 # asalsayi
-Javascript ile permütasyon ile asal sayı bulma
+Javascript  permütasyon ile asal sayı bulma
