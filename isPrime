@@ -1,0 +1,47 @@
+function isPrime(n) {
+  if (n < 2) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function generatePermutations(arr) {
+  const permutations = [];
+
+  function permute(remaining, current = []) {
+    if (remaining.length === 0) {
+      permutations.push(current);
+    } else {
+      for (let i = 0; i < remaining.length; i++) {
+        const next = remaining[i];
+        const newRemaining = remaining.filter((_, index) => index !== i);
+        permute(newRemaining, [...current, next]);
+      }
+    }
+  }
+
+  permute(arr);
+  return permutations;
+}
+
+function PrimeChecker(num) {
+  const numStr = String(num);
+  const digits = numStr.split("");
+  const permutations = generatePermutations(digits);
+
+  for (let i = 0; i < permutations.length; i++) {
+    const permNum = parseInt(permutations[i].join(""));
+    if (isPrime(permNum)) {
+      return 1;
+    }
+  }
+
+  return 0;
+}
+
+console.log(PrimeChecker(readline()));
